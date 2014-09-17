@@ -1,38 +1,11 @@
 <!DOCTYPE html>
 <html>
-<meta charset="utf-8">
 <head>
+	<meta charset="utf-8">
 	<title>Enumeration host objects</title>
-
-	<script type="text/javascript">
-		function print_combined_fp(){
-			var enum_obj = function(obj, path){
-			  path = path || obj;
-			  console.log(path);
-			  for (var prop in obj) {
-			       if (obj.hasOwnProperty(prop)) {
-			       		if ((typeof obj[prop] === 'object') && obj[prop]) {
-			       			if (path.length < 30){
-			       				console.log("Recurse into"+path+"."+obj);
-					   			enum_obj(obj[prop], path+"."+obj);	
-			       			}
-			        		
-				     	}
-				     	document.write(path, prop, ": ",obj[prop]+"<br>");
-				  	}
-			  }
-
-			  
-			  
-
-			}
-
-			enum_obj(screen);
-			enum_obj(navigator);
-		}
-	</script>
+	<script type="text/javascript" src="enumobj.js"></script>
 </head>
-<body onload="print_combined_fp()">
+<body onload="enum_all()">
 <pre id="json_result"></pre>
 </body>
 </html>
