@@ -1,14 +1,10 @@
-
 (function () {
     "use strict";
-    var tests = {};
-    tests["timezone"] = function () {
-        var date = new Date();
-        return (date.getHours() - date.getUTCHours() + 24) % 24;
-    };
-    tests["toLocaleFormat_H"] = function () {
-        return new Date(Date.UTC(1970, 0, 1)).toLocaleFormat("%H");
-    };    
-    
-    test_runner.addTest(tests); // add all the tests at once
+    var add_test = test_runner.addTest,
+        now = new Date();
+    add_test("timezone_by_get_tz_offset", now.getTimezoneOffset());
+    add_test("msec_since_epoch", now.getTime());
+    add_test("timezone_by_utc_hrs", function () {
+        return (now.getHours() - now.getUTCHours() + 24) % 24;
+    });
 }());

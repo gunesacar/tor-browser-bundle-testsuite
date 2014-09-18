@@ -216,10 +216,16 @@ our @tests = (
         name => 'fp_useragent',
         type  => 'selenium',
         descr => 'Check that userAgent is as expected',
-    },        {
+    },
+    {
         name => 'fp_navigator',
         type  => 'selenium',
         descr => 'Check that navigator properties are as expected',
+    },
+    {
+        name => 'tbb_fingerprint',
+        type  => 'selenium',
+        descr => 'Check that browser fingerprint is as expected',
     },
 );
 

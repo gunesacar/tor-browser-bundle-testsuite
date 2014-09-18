@@ -28,9 +28,6 @@ var FPUTILS = (function () {
 	};
 	
 	utils.print_fp = function (test_runner, table_id){
-		console.log("test_runner", test_runner);
-		
-		document.getElementById("json_result").textContent = JSON.stringify(test_runner.tests, null,"    ");
 		//document.body.appendChild(document.createTextNode(JSON.stringify(test_runner, null, 4)));
 		for (var prop in test_runner.tests){
             if (test_runner.tests.hasOwnProperty(prop)) {

@@ -1,14 +1,16 @@
 var test_runner = (function (conf) {
     "use strict";
-    var config = conf || {debug: true};
-    var runner = { tests : {} };
+    var config = conf || {debug: true},
+        runner = { tests : {} };
+
+    // Run the test, return the result.
     runner.getResult = function (test) {
         if (typeof test === 'function') {
             try {
                 return test();
             } catch (exc) { // return exception msg as the test result. makes sense? !!!
                 if (config.debug) {
-                    console.log("Exception while running: " + exc.message);
+                    console.log("Handling test exception, no worries: " + exc.message);
                 }
                 return FPUTILS.html_entities(exc.message.substring(0, 100)); // only get the first 100 chars
             }
@@ -16,6 +18,8 @@ var test_runner = (function (conf) {
             return test;
         }
     };
+
+    // Run the test, store the result 
     runner.addTest = function (feature, test) {
         var key;
         if (typeof feature === 'object') {
