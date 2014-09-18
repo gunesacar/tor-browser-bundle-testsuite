@@ -12,14 +12,16 @@
 	<script src="screen.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function print_combined_fp(){
-			//FPUTILS.print_fp(test_runner, "navigator_table");
-			document.getElementById("json_result").textContent = JSON.stringify(test_runner.tests, null,"    ");
+			var result_el = document.getElementById("json_result");
+			if (result_el && test_runner && test_runner.tests){
+				result_el.textContent = JSON.stringify(test_runner.tests, null,"    ");
+			} else {
+				result_el.textContent = "Failed. test_runner: " + test_runner + " Result element: " + result_el;
+			}
 		}
 	</script>
 </head>
 <body onload="print_combined_fp()">
-<table id="navigator_table"></table>
-<table id="modernzr_table"></table>
 <pre id="json_result"></pre>
 </body>
 </html>
