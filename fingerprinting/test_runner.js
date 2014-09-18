@@ -2,7 +2,11 @@ var test_runner = (function (conf) {
     "use strict";
     var config = conf || {debug: true},
         runner = { tests : {} };
-
+    
+    runner.html_entities = function (str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    
     // Run the test, return the result.
     runner.getResult = function (test) {
         if (typeof test === 'function') {
@@ -12,7 +16,8 @@ var test_runner = (function (conf) {
                 if (config.debug) {
                     console.log("Handling test exception, no worries: " + exc.message);
                 }
-                return FPUTILS.html_entities(exc.message.substring(0, 100)); // only get the first 100 chars
+                // do we need to escape browser exception msgs? Also get the first 100 chars only
+                return runner.html_entities(exc.message.substring(0, 100));
             }
         } else {
             return test;
